@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "lib": ["es2017", "esnext.asynciterable", "dom"],
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": false,
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    "paths": {
+      "@app/config/*": ["config/*"],
+      "@app/http/*": ["http/*"],
+      "@app/internal/*": ["internal/*"]
+    },
+    "typeRoots": ["./node_modules/@types"],
+    "types": ["reflect-metadata", "jest", "node"],
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "exclude": ["src/**/*.spec.ts"],
+  "include": ["typings/**/*.d.ts", "src/**/*"]
+}
