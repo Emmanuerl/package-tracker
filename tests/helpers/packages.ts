@@ -47,3 +47,23 @@ export function getTrail(pg: Knex, packageId: string): Promise<PackageTrail[]> {
     .where("package_id", packageId)
     .returning("*");
 }
+
+export async function createPackage(
+  pg: Knex,
+  dto = recordPackageDTO(),
+  overrides: Partial<Package> = {}
+): Promise<Package> {
+  const [pkg] = await pg<Package>("packages").insert(
+    {
+      description: dto.description,
+      size: dto.size,
+      status: dto.status,
+      title: dto.title,
+      delivered_at: dto.status === "DELIVERED" ? new Date() : undefined,
+      picked_up_at: dto.status === "PICKED_UP" ? new Date() : undefined,
+      ...overrides,
+    },
+    "*"
+  );
+  return pkg;
+}

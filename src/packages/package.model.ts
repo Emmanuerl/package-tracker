@@ -20,6 +20,14 @@ export interface Package extends Model {
    * current status of the package
    */
   status: PackageStatus;
+  /**
+   * pickup time
+   */
+  picked_up_at: Date;
+  /**
+   * time of delivery
+   */
+  delivered_at: Date;
 }
 
 export const packageStatuses = <const>[
@@ -37,3 +45,5 @@ export type RecordPackageDTO = Pick<
   Package,
   "description" | "size" | "status" | "title"
 >;
+
+export type UpdatePackageStatusDTO = Pick<Package, "status">;
