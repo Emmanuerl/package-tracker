@@ -85,4 +85,5 @@ $ npm test
 
 # Contributors
 
-[Chukwuemeka Chukwurah](https://github.com/emmanuerl)
+[Chukwuemeka Chukwurah](https://github.com/emmanuerl) - Developer
+[Omolefe Gbemisola]() - Graphics
