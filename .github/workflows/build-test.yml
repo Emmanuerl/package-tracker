@@ -1,0 +1,51 @@
+name: Build & Test
+
+on:
+  push:
+    branches-ignore:
+      - master
+      - staging
+
+jobs:
+  build-test:
+
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: package_tracker
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v2
+
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: "16.x"
+      
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build and test
+      run: |
+        npm run build
+        npm run test
+      env:
+        PORT: 9378
+        POSTGRES_DB: package_tracker
+        POSTGRES_HOST: localhost
+        POSTGRES_PORT: 5432
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: password
+        SERVICE_NAME: packet-tracker

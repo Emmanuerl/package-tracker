@@ -1,5 +1,6 @@
 import "module-alias/register";
 import "reflect-metadata";
+import "./http/controllers";
 
 import { Logger, defaultSerializers } from "@risemaxi/octonet";
 
@@ -7,6 +8,8 @@ import { App } from "./app";
 import { Container } from "inversify";
 import { Knex } from "knex";
 import LIB_TYPES from "./internal/inversify";
+import { PackageRepository } from "./packages";
+import TYPES from "./config/inversify.types";
 import { createPostgres } from "./config/postgres";
 import env from "./config/env";
 import http from "http";
@@ -26,6 +29,11 @@ const start = async () => {
     const pg = await createPostgres(logger);
     container.bind<Knex>(LIB_TYPES.KnexDB).toConstantValue(pg);
     logger.log("successfully connected to postgres and has run migration");
+
+    // setup app dependencies
+    container
+      .bind<PackageRepository>(TYPES.PackageRepository)
+      .to(PackageRepository);
 
     const app = new App(container, logger, () => isHealthy(pg));
     const appServer = app.server.build();
