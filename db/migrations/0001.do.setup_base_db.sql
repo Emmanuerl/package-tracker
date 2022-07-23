@@ -17,6 +17,8 @@ create table if not exists packages (
   title text not null,
   description text null,
   size numeric not null,
+  picked_up_at timestamptz null,
+  delivered_at timestamptz null,
   status text null
 );
 

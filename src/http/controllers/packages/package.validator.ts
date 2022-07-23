@@ -10,3 +10,11 @@ export const isRecordPackageDTO = joi.object().keys({
     .default("WAREHOUSE"),
   title: joi.string().required(),
 });
+
+export const isPackageId = joi.object().keys({
+  id: joi.string().uuid({ version: "uuidv4" }).required(),
+});
+
+export const isUpdatePackageStatusDTO = joi.object().keys({
+  status: joi.string().valid(...packageStatuses),
+});
