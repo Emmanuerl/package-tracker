@@ -1,6 +1,6 @@
 # Package Tracker
 
-![alt text](https://github.com/Emmanuerl/package-tracker/blob/master/documentation/logo.png?raw=true)
+![alt text](https://github.com/Emmanuerl/package-tracker/blob/main/documentation/logo.png?raw=true)
 
 a simple demonstration of a package status tracking service
 
