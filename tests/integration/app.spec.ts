@@ -15,6 +15,6 @@ const app = new App(container, logger).server.build();
 
 describe("[GET] Health checker", () => {
   it("should successfully query the health checker", async () => {
-    await getSuccess(request(app).get("/api/v2"));
+    await getSuccess(request(app).get("/api/v1"));
   });
 });

@@ -14,7 +14,8 @@
     "paths": {
       "@app/config/*": ["config/*"],
       "@app/http/*": ["http/*"],
-      "@app/internal/*": ["internal/*"]
+      "@app/internal/*": ["internal/*"],
+      "@app/packages": ["packages/"]
     },
     "typeRoots": ["./node_modules/@types"],
     "types": ["reflect-metadata", "jest", "node"],
